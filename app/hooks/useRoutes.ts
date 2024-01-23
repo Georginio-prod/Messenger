@@ -14,9 +14,9 @@ const useRoutes = () => {
     const routes = useMemo(() =>[
         {
             label: 'chat',
-            href: '/converstations',
+            href: '/conversations',
             icon: HiChat,
-            active: pathname === 'conversations' || !! conversationId
+            active: pathname === '/conversations' || !! conversationId
         },
         {
             label: 'Users',
