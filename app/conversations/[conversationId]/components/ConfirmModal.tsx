@@ -5,7 +5,7 @@ import { Dialog } from '@headlessui/react'
 import { FiAlertTriangle } from 'react-icons/fi'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import Modal from '@/app/components/modals/Modal';
+import Modal from '@/app/components/Modal';
 import Button from '@/app/components/Button';
 import useConversation from '@/app/hooks/useConversation';
 import { toast } from 'react-hot-toast';
@@ -73,11 +73,11 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
             as="h3" 
             className="text-base font-semibold leading-6 text-gray-900"
           >
-            Delete conversation
+            Supprimer la conversation
           </Dialog.Title>
           <div className="mt-2">
             <p className="text-sm text-gray-500">
-              Are you sure you want to delete this conversation? This action cannot be undone.
+              Ëtes vous sûr de vouloir supprimez cette converstation? Cette action na plus de retour possible.
             </p>
           </div>
         </div>
@@ -88,7 +88,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
           danger
           onClick={onDelete}
         >
-          Delete
+          Supprimez
         </Button>
         <Button
           disabled={isLoading}
