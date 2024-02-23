@@ -73,11 +73,11 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
             as="h3" 
             className="text-base font-semibold leading-6 text-gray-900"
           >
-            Supprimer la conversation
+            Delete conversation
           </Dialog.Title>
           <div className="mt-2">
             <p className="text-sm text-gray-500">
-              Ëtes vous sûr de vouloir supprimez cette converstation? Cette action na plus de retour possible.
+              Are you sure you want to delete this conversation? This action cannot be undone.
             </p>
           </div>
         </div>
@@ -88,7 +88,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
           danger
           onClick={onDelete}
         >
-          Supprimez
+          Delete
         </Button>
         <Button
           disabled={isLoading}

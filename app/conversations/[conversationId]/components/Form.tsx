@@ -11,9 +11,8 @@ import {
   useForm 
 } from "react-hook-form";
 import axios from "axios";
-//import { CldUploadButton } from "next-cloudinary";
+import { CldUploadButton } from "next-cloudinary";
 import useConversation from "@/app/hooks/useConversation";
-import {CldUploadButton} from "next-cloudinary";
 
 const Form = () => {
   const { conversationId } = useConversation();
@@ -35,14 +34,14 @@ const Form = () => {
     setValue('message', '', { shouldValidate: true });
     axios.post('/api/messages', {
       ...data,
-      conversationId
+      conversationId: conversationId
     })
   }
 
   const handleUpload = (result: any) => {
     axios.post('/api/messages', {
-      image: result?.info?.secure_url,
-      conversationId
+      image: result.info.secure_url,
+      conversationId: conversationId
     })
   }
 
@@ -60,15 +59,13 @@ const Form = () => {
         w-full
       "
     >
-       <CldUploadButton
-            options={{ maxFiles: 1 }}
-            onUpload={handleUpload}
-            uploadPreset="oq8s0tfx"
-          >
-         <HiPhoto size={30} className="text-sky-500" />
-</CldUploadButton>
-
-
+      <CldUploadButton 
+        options={{ maxFiles: 1 }} 
+        onUpload={handleUpload} 
+        uploadPreset="pgc9ehd5"
+      >
+        <HiPhoto size={30} className="text-sky-500" />
+      </CldUploadButton>
       <form 
         onSubmit={handleSubmit(onSubmit)} 
         className="flex items-center gap-2 lg:gap-4 w-full"
@@ -78,7 +75,7 @@ const Form = () => {
           register={register} 
           errors={errors} 
           required 
-          placeholder="Entrez un Message"
+          placeholder="Write a message"
         />
         <button 
           type="submit" 

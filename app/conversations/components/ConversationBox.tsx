@@ -12,16 +12,17 @@ import Avatar from "@/app/components/Avatar";
 import useOtherUser from "@/app/hooks/useOtherUser";
 //import AvatarGroup from "@/app/components/AvatarGroup";
 import { FullConversationType } from "@/app/types";
+import AvatarGroup from "@/app/components/AvatarGroup";
 
 interface ConversationBoxProps {
   data: FullConversationType,
   selected?: boolean;
 }
 
-const ConversationBox: React.FC<ConversationBoxProps> = ({ 
-  data, 
-  selected 
-}) => {
+const ConversationBox: React.FC<ConversationBoxProps> = ({
+                                                           data,
+                                                           selected
+                                                         }) => {
   const otherUser = useOtherUser(data);
   const session = useSession();
   const router = useRouter();
@@ -39,7 +40,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
   const userEmail = useMemo(() =>{
     return session.data?.user?.email;
   },[session.data?.user?.email]);
-  
+
   const hasSeen = useMemo(() => {
     if (!lastMessage) {
       return false;
@@ -52,7 +53,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     }
 
     return seenArray
-      .filter((user) => user.email === userEmail).length !== 0;
+        .filter((user) => user.email === userEmail).length !== 0;
   }, [userEmail, lastMessage]);
 
   const lastMessageText = useMemo(() => {
@@ -67,10 +68,10 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     return 'Started a conversation';
   }, [lastMessage]);
 
-  return ( 
-    <div
-      onClick={handleClick}
-      className={clsx(`
+  return (
+      <div
+          onClick={handleClick}
+          className={clsx(`
         w-full 
         relative 
         flex 
@@ -82,59 +83,58 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         transition
         cursor-pointer
         `,
-        selected ? 'bg-neutral-100' : 'bg-white'
-      )}
-    >
-      {/*
+              selected ? 'bg-neutral-100' : 'bg-white'
+          )}
+      >
+
   {data.isGroup ? (
     <AvatarGroup users={data.users} />
   ) : (
-
-  )}
-*/}
       <Avatar user={otherUser} />
-      <div className="min-w-0 flex-1">
-        <div className="focus:outline-none">
-          <span className="absolute inset-0" aria-hidden="true" />
-          <div className="
+  )}
+
+        <div className="min-w-0 flex-1">
+          <div className="focus:outline-none">
+            <span className="absolute inset-0" aria-hidden="true" />
+            <div className="
             flex
              justify-between
               items-center mb-1
               "
-          >
-            <p className="
+            >
+              <p className="
               text-md
                font-medium
                 text-gray-900
                 "
-            >
-              {data.name || otherUser.name}
-            </p>
-            {lastMessage?.createdAt && (
-              <p 
-                className="
-                  text-xs 
-                  text-gray-400 
+              >
+                {data.name || otherUser.name}
+              </p>
+              {lastMessage?.createdAt && (
+                  <p
+                      className="
+                  text-xs
+                  text-gray-400
                   font-light
                 "
-              >
-                {format(new Date(lastMessage.createdAt), 'p')}
-              </p>
-            )}
-          </div>
-          <p 
-            className={clsx(`
+                  >
+                    {format(new Date(lastMessage.createdAt), 'p')}
+                  </p>
+              )}
+            </div>
+            <p
+                className={clsx(`
               truncate 
               text-sm
               `,
-              hasSeen ? 'text-gray-500' : 'text-black font-medium'
-            )}>
+                    hasSeen ? 'text-gray-500' : 'text-black font-medium'
+                )}>
               {lastMessageText}
             </p>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
- 
+
 export default ConversationBox;

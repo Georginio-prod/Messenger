@@ -1,8 +1,7 @@
 'use client';
 
-//import Modal from '@/app/components/modals/Modal';
+import Modal from '@/app/components/Modal';
 import Image from 'next/image';
-import Modal from "@/app/components/Modal";
 
 interface ImageModalProps {
   isOpen?: boolean;

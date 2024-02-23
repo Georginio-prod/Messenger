@@ -1,8 +1,7 @@
 import getConversations from "../actions/getConversations";
 import getUsers from "../actions/getUsers";
+import Sidebar from "../components/Sidebar/Sidebar";
 import ConversationList from "./components/ConversationList";
-import Sidebar from "@/app/components/Sidebar/Sidebar";
-import React from "react";
 
 export default async function ConversationsLayout({
   children
